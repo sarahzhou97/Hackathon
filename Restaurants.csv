@@ -111,9 +111,9 @@ Cloud 9,806 Central Ave S,Kent,WA,98032,(253) 852-9910,"Grill,Pub Food,American,
 "
 Pho Saigon Garden,25632 Pacific Hwy S,Kent,WA,98032,(253) 946-2233,"Pho,Vietnamese,Noodle Bar,Asian,Pan Asian",1,4.5,Mon-Sat 10:00 AM-9:00 PM; Sun 10:00 AM-7:30 PM,"http://phosaigonkent.com/
 "
-El Parral,26122 Pacific Hwy S,Kent,WA,98032,(253) 941-0214,Mexican,,,"Thu 9:00 PM-11:59 PM; Fri-Sat 12:00 AM-2:00 AM, 9:00 PM-11:59 PM; Sun 12:00 AM-2:00 AM","http://elparral.com
+El Parral,26122 Pacific Hwy S,Kent,WA,98032,(253) 941-0214,Mexican,2,4.0,"Thu 9:00 PM-11:59 PM; Fri-Sat 12:00 AM-2:00 AM, 9:00 PM-11:59 PM; Sun 12:00 AM-2:00 AM","http://elparral.com
 "
-Sam's Sports Bar,23803 104th Ave SE,Kent,WA,98031,(253) 277-0485,"American,Traditional",,3.5,"Mon 12:00 AM-2:00 AM, 11:00 AM-11:59 PM; Tue-Thu 11:00 AM-11:59 PM; Fri-Sun 12:00 AM-2:00 AM, 11:00 AM-11:59 PM","http://www.samssportsbarkent.com
+Sam's Sports Bar,23803 104th Ave SE,Kent,WA,98031,(253) 277-0485,"American,Traditional",2,3.5,"Mon 12:00 AM-2:00 AM, 11:00 AM-11:59 PM; Tue-Thu 11:00 AM-11:59 PM; Fri-Sun 12:00 AM-2:00 AM, 11:00 AM-11:59 PM","http://www.samssportsbarkent.com
 "
 Jamba Juice,417 Ramsay Way,Kent,WA,98032,(253) 852-4078,"Smoothies,American,Traditional,Juices,Halal",1,5,Mon-Sat 8:00 AM-9:00 PM; Sun 9:00 AM-7:00 PM,"http://www.jambajuice.com/
 "
@@ -135,7 +135,7 @@ Thai Chili Restaurant,120 Washington Ave N,Kent,WA,98032,(253) 850-5887,"Thai,As
 "
 Maggie's On Meeker,307 W Meeker St,Kent,WA,98032,(253) 852-4116,"Deli,American,Traditional,Sandwiches,Bakery",1,4,Open Daily 7:00 AM-2:00 PM,"http://www.maggiesonmeeker.com
 "
-Olive Tree,12930 SE Kent Kangley Rd,Kent,WA,98030,(253) 630-4976,"Mediterranean,Greek,Middle Eastern",,,Mon-Tue 11:00 AM-9:00 PM; Wed-Sat 11:00 AM-10:00 PM; Sun 11:00 AM-9:00 PM,"http://www.olivetreemenu.com/
+Olive Tree,12930 SE Kent Kangley Rd,Kent,WA,98030,(253) 630-4976,"Mediterranean,Greek,Middle Eastern",2,4.5,Mon-Tue 11:00 AM-9:00 PM; Wed-Sat 11:00 AM-10:00 PM; Sun 11:00 AM-9:00 PM,"http://www.olivetreemenu.com/
 "
 Banyan Tree Restaurant,504 Ramsay Way,Kent,WA,98032,(253) 981-6333,"Thai,Cafe",2,3.5,Mon-Thu 11:00 AM-9:30 PM; Fri-Sat 11:00 AM-10:00 PM; Sun 11:00 AM-9:30 PM,"http://www.banyantreerestaurant.com/
 "
@@ -181,7 +181,7 @@ Cutters Point Coffee,25246 Pacific Hwy S,Kent,WA,98032,(253) 941-2174,"Coffee,Ca
 "
 Applebee's,25442 104th Ave SE,Kent,WA,98030,(253) 520-3888,"Grill,American,Burgers,Pub Food,Cafe",2,4,"Mon-Fri 11:00 AM-11:59 PM; Sat-Sun 12:00 AM-1:00 AM, 10:00 AM-11:59 PM","http://www.applebees.com
 "
-Rich's 5 Star Pizza,13121 SE Kent Kangley Rd,Kent,WA,98030,(253) 639-7827,Pizza,,4.5,Mon-Thu 10:00 AM-10:00 PM; Fri-Sat 10:00 AM-11:59 PM; Sun 10:00 AM-10:00 PM,"http://www.richs5starpizza.com
+Rich's 5 Star Pizza,13121 SE Kent Kangley Rd,Kent,WA,98030,(253) 639-7827,Pizza,2,4.5,Mon-Thu 10:00 AM-10:00 PM; Fri-Sat 10:00 AM-11:59 PM; Sun 10:00 AM-10:00 PM,"http://www.richs5starpizza.com
 "
 Sweet Themes Bakery,317 W Meeker St,Kent,WA,98032,(253) 981-4999,Bakery,1,4,Mon-Fri 9:00 AM-5:00 PM; Sat 9:00 AM-2:00 PM; Sun 10:00 AM-4:00 PM,"http://www.sweetthemesbakery.com/
 "
@@ -267,9 +267,7 @@ Pizza Casa,12924 Pacific Hwy SW,Lakewood,WA,98499,(253) 588-8135,"Pizza,Italian,
 "
 Forza Coffee,10240 Bridgeport Way SW,Lakewood,WA,98499,(253) 581-6701,"Coffee,Bagels,Cafe,Tea",1,4.5,Mon-Sat 7:00 AM-9:00 PM; Sun 11:00 AM-7:00 PM,"http://www.forzacoffeecompany.com
 "
-Six Billiards,8749 S Tacoma Way,Lakewood,WA,98499,(253) 584-6987,,,,"Open Daily 12:00 AM-4:00 AM, 12:00 PM-11:59 PM","http://www.planjam.com/details/2/3/22114
-"
-Great American Casino,10117 S Tacoma Way,Lakewood,WA,98499,(253) 396-0500,"American,Steak,Traditional",,3.5,"Open Daily 12:00 AM-6:00 AM, 10:00 AM-11:59 PM","http://www.greatamericancasino.com
+Great American Casino,10117 S Tacoma Way,Lakewood,WA,98499,(253) 396-0500,"American,Steak,Traditional",2,3.5,"Open Daily 12:00 AM-6:00 AM, 10:00 AM-11:59 PM","http://www.greatamericancasino.com
 "
 Papa John's Pizza,5700 100th St SW,Lakewood,WA,98499,(253) 589-2020,Pizza,1,2.5,Open Daily 10:00 AM-9:40 PM,"http://www.papajohns.com
 "
@@ -339,7 +337,7 @@ Burger King,17524 Meridian E,Puyallup,WA,98375,(253) 840-5295,"Fast Food,Burgers
 "
 Jack In The Box,705 S Meridian,Puyallup,WA,98371,(253) 435-6071,"Fast Food,Burgers",1,3,Open Daily 12:00 AM-11:59 PM,"http://www.jackinthebox.com
 "
-Bean Tree,745 River Rd,Puyallup,WA,98371,(253) 841-8141,"Coffee,Cafe,Tea",,,Open Daily 12:00 PM-3:00 PM,"http://www.agr.wa.gov/
+Bean Tree,745 River Rd,Puyallup,WA,98371,(253) 841-8141,"Coffee,Cafe,Tea",1,4,Open Daily 12:00 PM-3:00 PM,"http://www.agr.wa.gov/
 "
 Buffalo Wild Wings,13215 Meridian E Longston Pl,Puyallup,WA,98374,(253) 845-5672,"Wings,Grill,American,Barbecue,Traditional",2,3.5,"Mon 11:00 AM-11:59 PM; Tue-Sun 12:00 AM-2:00 AM, 11:00 AM-11:59 PM","http://www.buffalowildwings.com
 "
@@ -359,7 +357,7 @@ Sparks Firehouse Deli,621 5th St SW,Puyallup,WA,98371,(253) 840-3354,"Deli,Pizza
 "
 Iron Chef,4301 S Meridian,Puyallup,WA,98373,(253) 848-3759,"Japanese,Steak,Asian,Chinese,Sushi",2,4,"Mon-Fri 11:30 AM-2:30 PM, 4:30 PM-10:00 PM; Sat 1:00 PM-10:00 PM; Sun 1:00 PM-9:00 PM","http://www.ironchefsteakhouse.com
 "
-The Loose Wheel Bar & Grill,715 River Rd,Puyallup,WA,98371,(253) 848-4444,"Grill,American,Pub Food,Contemporary",,4,"Open Daily 12:00 AM-2:00 AM, 8:00 AM-11:59 PM","http://www.theloosewheel.com/
+The Loose Wheel Bar & Grill,715 River Rd,Puyallup,WA,98371,(253) 848-4444,"Grill,American,Pub Food,Contemporary",2,4,"Open Daily 12:00 AM-2:00 AM, 8:00 AM-11:59 PM","http://www.theloosewheel.com/
 "
 Sonic Drive-In,13609 Meridian E,Puyallup,WA,98373,(253) 841-6820,"Fast Food,Burgers",1,4,"Mon-Fri 7:00 AM-11:59 PM; Sat-Sun 12:00 AM-2:00 AM, 7:00 AM-11:59 PM","http://www.sonicdrivein.com/
 "
@@ -395,7 +393,7 @@ Mrs Turner's Restaurant,701 E Main,Puyallup,WA,98372,(253) 848-7761,"American,Ca
 "
 Chili Thai Restaurant,3712 9th St SW,Puyallup,WA,98373,(253) 864-7005,"Thai,Asian,Continental,Chicken,Oysters",1,5,Mon-Thu 11:00 AM-9:00 PM; Fri-Sat 11:00 AM-10:00 PM; Sun 12:00 PM-9:00 PM,"http://www.chilithai.com/
 "
-Wok and Teriyaki House,311 River Rd,Puyallup,WA,98371,(253) 770-4988,"Chinese,Asian,Pan Asian,American",,5,Mon-Sat 9:30 AM-9:30 PM; Sun 9:30 AM-9:00 PM,"http://www.bk.com
+Wok and Teriyaki House,311 River Rd,Puyallup,WA,98371,(253) 770-4988,"Chinese,Asian,Pan Asian,American",1,4.5,Mon-Sat 9:30 AM-9:30 PM; Sun 9:30 AM-9:00 PM,"http://www.bk.com
 "
 Out & About Burgers,14214 Meridian E,Puyallup,WA,98373,(253) 677-1974,"Burgers,Fast Food",1,4,Mon 11:00 AM-8:00 PM; Wed-Sat 11:00 AM-8:00 PM; Sun 11:00 AM-7:00 PM,"http://www.outandaboutburgers.com/
 "
@@ -404,8 +402,6 @@ KFC,301 2nd Ave NE,Puyallup,WA,98372,(253) 845-6676,"Fast Food,Chicken",1,2,Mon-
 Toulouse Petit,601 Queen Anne Ave N,Seattle,WA,98109,(206) 432-9069,"Creole,Cajun,French,Southern,Pub Food",2,4.5,"Open Daily 12:00 AM-2:00 AM, 8:00 AM-11:59 PM","http://www.toulousepetit.com
 "
 The Paramount Theatre,911 Pine St,Seattle,WA,98101,(206) 902-5500,"Cafe,American",2,4.5,"Mon 5:00 PM-8:00 PM; Tue-Wed 5:00 PM-9:00 PM; Thu-Fri 5:00 PM-10:00 PM; Sat 12:00 PM-3:00 PM, 5:00 PM-9:00 PM; Sun 11:00 AM-12:00 PM, 4:00 PM-8:00 PM","http://stgpresents.org/paramount
-"
-El Corazon,109 Eastlake Ave E,Seattle,WA,98109,(206) 381-3094,Pub Food,,3,"Open Daily 12:00 AM-1:00 AM, 3:00 PM-11:59 PM","http://www.elcorazonseattle.com
 "
 The Walrus and the Carpenter,4743 Ballard Ave NW,Seattle,WA,98107,(206) 395-9227,"Seafood,American,Contemporary,Raw,Oysters",2,4.5,Open Daily 4:00 PM-10:00 PM,"http://thewalrusbar.com
 "
@@ -436,8 +432,6 @@ Matt's in the Market,94 Pike St,Seattle,WA,98101,(206) 467-7909,"American,Seafoo
 Ballard Loft,5105 Ballard Ave NW,Seattle,WA,98107,(206) 420-2737,"Pub Food,American,Hot Dogs,Pizza,Sandwiches",2,4.5,"Open Daily 12:00 AM-2:00 AM, 11:30 AM-11:59 PM","http://www.ballardloft.com
 "
 BalMar,5449 Ballard Ave NW,Seattle,WA,98107,(206) 297-0500,"American,Pub Food,Contemporary,Burgers,Wings",2,3,"Open Daily 12:00 AM-2:00 AM, 5:00 PM-11:59 PM","http://www.thebalmar.com
-"
-Aston Manor,2946 1st Ave S,Seattle,WA,98134,(206) 382-7866,,,4,"Fri 10:00 PM-11:59 PM; Sat 12:00 AM-2:00 AM, 10:00 PM-11:59 PM; Sun 12:00 AM-2:00 AM","http://www.aston-manor.com
 "
 The Crab Pot,1301 Alaskan Way,Seattle,WA,98101,(206) 624-1890,"Seafood,American,Burgers,Cafe",3,4.5,Mon-Thu 11:00 AM-9:00 PM; Fri-Sat 11:00 AM-10:00 PM; Sun 11:00 AM-9:00 PM,"http://www.thecrabpotseattle.com
 "
