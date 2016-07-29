@@ -10,11 +10,9 @@ public class Main extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.radius);
+        setContentView(R.layout.activity_login);
     }
 
-    public void readyButtonOnClick(View view) {
-        //Generate Restaurant matches
-    }
+
 
 }
