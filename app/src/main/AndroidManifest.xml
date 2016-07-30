@@ -26,7 +26,8 @@
         <activity
             android:name=".EnterRadius"
             android:label="@string/title_activity_enter_radius"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DisplayrestaurantsActivity"></activity>
     </application>
 
 </manifest>
