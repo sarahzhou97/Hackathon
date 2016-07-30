@@ -1,4 +1,3 @@
-package com.hfad.hackathonproject;
 import java.sql.*;
 import org.jblas.DoubleMatrix;
 
@@ -51,6 +50,92 @@ public class AzureConnector {
 			         se.printStackTrace();
 			      }
 			}
+	}
+	public void createTableUsers(String table_name){
+		Connection con = null;
+		Statement stmt = null;
+		try{
+			con = DriverManager.getConnection(connectionUrl);
+			stmt = con.createStatement();
+			String sql = "CREATE TABLE " + table_name + " (num INTEGER not NULL)";
+			stmt.executeUpdate(sql);
+			System.out.println("Created table in given database...");
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+		      //finally block used to close resources
+		      try{
+		         if(stmt!=null)
+		            con.close();
+		      }catch(SQLException se){
+		      }// do nothing
+		      try{
+		         if(con!=null)
+		            con.close();
+		      }catch(SQLException se){
+		         se.printStackTrace();
+		      }
+		}
+	}
+	public void insertNumUsers(String table_name, int num){
+		Connection con = null;
+		Statement stmt = null;
+		try {
+				con = DriverManager.getConnection(connectionUrl);
+				stmt = con.createStatement();
+				String sql = "INSERT INTO " + table_name + " VALUES(" + Integer.toString(num) + ")";
+				stmt.executeUpdate(sql);
+				System.out.println("Inserted number in given database...");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+			      //finally block used to close resources
+			      try{
+			         if(stmt!=null)
+			            con.close();
+			      }catch(SQLException se){
+			      }// do nothing
+			      try{
+			         if(con!=null)
+			            con.close();
+			      }catch(SQLException se){
+			         se.printStackTrace();
+			      }
+			}
+	}
+	public int getNumUsers(String table_name){
+		Connection con = null;
+		Statement stmt = null;
+		int num = 0;
+		try {
+				con = DriverManager.getConnection(connectionUrl);
+				stmt = con.createStatement();
+				String sql = "SELECT num FROM " + table_name;
+				ResultSet rs = stmt.executeQuery(sql);
+				while(rs.next()){
+					num = rs.getInt("num");
+				}
+				System.out.println("Selected user in given database...");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+			      //finally block used to close resources
+			      try{
+			         if(stmt!=null)
+			            con.close();
+			      }catch(SQLException se){
+			      }// do nothing
+			      try{
+			         if(con!=null)
+			            con.close();
+			      }catch(SQLException se){
+			         se.printStackTrace();
+			      }
+			}
+		return num;
 	}
 	public void createTableMeans(String[] cols, String table_name){
 		Connection con = null;
@@ -193,7 +278,7 @@ public class AzureConnector {
 			      }
 			}
 	}
-	public DoubleMatrix selectMatrix(String table_name) throws InterruptedException, ExecutionException{
+	public DoubleMatrix selectMatrix(String table_name, int num_Users) throws InterruptedException, ExecutionException{
 		Connection con = null;
 		Statement stmt = null;
 		DoubleMatrix X = null;
@@ -206,11 +291,12 @@ public class AzureConnector {
 					ResultSetMetaData rsmd = rs.getMetaData();
 					int num_columns = rsmd.getColumnCount();
 					DoubleMatrix temp = DoubleMatrix.zeros(1,num_columns - 2);
+					if(X == null) X = DoubleMatrix.zeros(num_Users,num_columns - 2);
+					int row = rs.getInt(1);
 					for(int i = 3;i <= num_columns;i++){
 						temp.put(0, i - 3, rs.getDouble(i));
 					}
-					if(X == null) X = temp.dup();
-					else X = DoubleMatrix.concatVertically(X, temp);
+					X.putRow(row,temp);
 				}
 				int num_cols = X.getColumns();
 				int[] cols = new int[num_cols];
@@ -256,6 +342,38 @@ public class AzureConnector {
 			      
 			}
 		return X;
+	}
+	public int getUserNumber(String table_name, String user_name){
+		Connection con = null;
+		Statement stmt = null;
+		int id = 0;
+		try {
+				con = DriverManager.getConnection(connectionUrl);
+				stmt = con.createStatement();
+				String sql = "SELECT id FROM " + table_name + " WHERE client=" + "'" + user_name + "'";
+				ResultSet rs = stmt.executeQuery(sql);
+				while(rs.next()){
+					id = rs.getInt("id");
+				}
+				System.out.println("Selected user in given database...");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+			      //finally block used to close resources
+			      try{
+			         if(stmt!=null)
+			            con.close();
+			      }catch(SQLException se){
+			      }// do nothing
+			      try{
+			         if(con!=null)
+			            con.close();
+			      }catch(SQLException se){
+			         se.printStackTrace();
+			      }
+			}
+		return id;
 	}
 	public void updateUser(String table_name,String user_name,HashMap<Integer,Double> vals){
 		Connection con = null;
@@ -345,6 +463,42 @@ public class AzureConnector {
 				for(int i = 0;i < ret.size();i++){
 					if(Double.compare(ret.get(i), 0.0) == 0){
 						ret.set(i, means.get(i));
+					}
+				}
+				System.out.println("Selected user in given database...");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+			      //finally block used to close resources
+			      try{
+			         if(stmt!=null)
+			            con.close();
+			      }catch(SQLException se){
+			      }// do nothing
+			      try{
+			         if(con!=null)
+			            con.close();
+			      }catch(SQLException se){
+			         se.printStackTrace();
+			      }
+			}
+		return ret;
+	}
+	public ArrayList<Double> getUserID(String table_name, int id){
+		Connection con = null;
+		Statement stmt = null;
+		ArrayList<Double> ret = new ArrayList<Double>();
+		try {
+				con = DriverManager.getConnection(connectionUrl);
+				stmt = con.createStatement();
+				String sql = "SELECT * FROM " + table_name + " WHERE id=" + "" + Integer.toString(id) + "";
+				ResultSet rs = stmt.executeQuery(sql);
+				while(rs.next()){
+					ResultSetMetaData rsmd = rs.getMetaData();
+					int num_columns = rsmd.getColumnCount();
+					for(int i = 3;i <= num_columns;i++){
+						ret.add(i - 3, rs.getDouble(i));
 					}
 				}
 				System.out.println("Selected user in given database...");
@@ -473,54 +627,5 @@ public class AzureConnector {
 			ret.put(k, X.getRow(i));
 		}
 		return ret;
-	}*/
-	/*public static void main(String[] args){
-		UserStore test = new UserStore();
-		try {
-			test.createUserStorage(new File("C:\\Users\\Allen\\Documents\\finalfinalMatrix.txt"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		HashMap<String, ArrayList<Double>> userInfo = test.getUserInfo();
-		ArrayList<String> restaurants = test.getRestaurants();
-		String[] cols = new String[restaurants.size()];
-		for(int i = 0;i < restaurants.size();i++){
-			cols[i] = "col" + Integer.toString(i);
-		}
-		//dropTable("TEST");
-		//createTable(cols,"TEST");
-		//insertIntoTable(userInfo,"TEST");
-		/*MachineLearning ml = new MachineLearning();
-		DoubleMatrix m = DoubleMatrix.zeros(1,1);
-		try {
-			m = selectMatrix("TEST");
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//ml.print(m);
-		int num_K = 0;
-		try {
-			System.out.println("Start");
-			num_K = ml.chooseCluster(m,10);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ArrayList<DoubleMatrix> arr = ml.runKMeans(m,num_K);
-		ml.print(arr.get(0));
-		ArrayList<Double> user = getUser("TEST","1111");
-		System.out.println(user.size());
-		for(Double d : user){
-			System.out.print(d + " ");
-		}
-		
 	}*/
 }

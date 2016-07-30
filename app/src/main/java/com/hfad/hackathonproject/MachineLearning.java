@@ -1,4 +1,3 @@
-package com.hfad.hackathonproject;
 import org.jblas.DoubleMatrix;
 import java.lang.Math;
 import org.jblas.MatrixFunctions;
