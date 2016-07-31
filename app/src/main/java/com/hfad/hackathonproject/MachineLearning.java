@@ -1,4 +1,3 @@
-package com.hfad.hackathonproject;
 import org.jblas.DoubleMatrix;
 import java.lang.Math;
 import org.jblas.MatrixFunctions;
@@ -153,7 +152,7 @@ public class MachineLearning {
 		double[] first = gapStatistic(X,3);
 		gaps[0] = first[0];
 		int cluster = maxK;
-		for(int k = 3;k < maxK;k++){
+		for(int k = 4;k < maxK;k++){
 			double[] gapK1 = gapStatistic(X,k+1);
 			gaps[k] = gapK1[0];
 			if(Double.compare(gaps[k - 1], gaps[k] - gapK1[1]) >= 0){
