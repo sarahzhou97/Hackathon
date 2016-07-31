@@ -1,4 +1,4 @@
-
+package com.hfad.hackathonproject;
 public class Restaurant {
 	private String name;
 	private String address;
