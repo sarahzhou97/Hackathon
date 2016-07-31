@@ -34,7 +34,7 @@ public class RestaurantDescription extends AppCompatActivity {
     }
 
     public void gotowebsite(View view) {
-        goToUrl()
+        goToUrl();
     }
 
     public void gotomaps() {

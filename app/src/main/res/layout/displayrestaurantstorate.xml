@@ -17,7 +17,7 @@
             android:layout_weight="0.34"
             card_view:cardCornerRadius="4dp"
             card_view:cardElevation="@dimen/cardview_default_elevation"
-            android:background="#f2ffee">
+            android:background="#ffffff">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -71,18 +71,30 @@
                             android:text="Categories"
                             android:textColor="@color/green" />
 
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@id/categories1"
+                            android:gravity="left"
+                            android:text="Address"
+                            android:id="@+id/address1"
+                            android:textColor="@color/green" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/address1"
+                            android:text="Take me here!"
+                            android:id="@+id/num1"
+                            android:background="@drawable/button"
+                            android:layout_centerInParent="true"/>
+
                     </RelativeLayout>
 
 
-                    <TextView
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:gravity="left"
-                        android:text="Address"
-                        android:id="@+id/address1"
-                        android:textColor="@color/green" />
 
 
 
@@ -100,12 +112,14 @@
         android:layout_gravity="center"
         android:layout_weight="0.34"
         card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="@dimen/cardview_default_elevation">
+        card_view:cardElevation="@dimen/cardview_default_elevation"
+        android:background="#f2ffee">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+           >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -153,18 +167,30 @@
                         android:text="Categories"
                         android:textColor="@color/green" />
 
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@id/categories2"
+                        android:gravity="left"
+                        android:text="Address"
+                        android:id="@+id/address2"
+                        android:textColor="@color/green" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/address2"
+                        android:text="Take me here!"
+                        android:id="@+id/num2"
+                        android:background="@drawable/button"
+                        android:layout_centerInParent="true"/>
+
+
                 </RelativeLayout>
 
 
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="left"
-                    android:text="Address"
-                    android:id="@+id/address2"
-                    android:textColor="@color/green" />
 
             </LinearLayout>
 
@@ -179,12 +205,14 @@
         android:layout_gravity="center"
         android:layout_weight="0.34"
         card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="@dimen/cardview_default_elevation">
+        card_view:cardElevation="@dimen/cardview_default_elevation"
+        android:background="#f2ffee">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#f2ffee">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -232,18 +260,30 @@
                         android:text="Categories"
                         android:textColor="@color/green" />
 
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@id/categories3"
+                        android:gravity="left"
+                        android:text="Address"
+                        android:id="@+id/address3"
+                        android:textColor="@color/green" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/address3"
+                        android:text="Take me here!"
+                        android:id="@+id/num3"
+                        android:background="@drawable/button"
+                        android:layout_centerInParent="true"/>
+
                 </RelativeLayout>
 
 
-                <TextView
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="left"
-                    android:text="Address"
-                    android:id="@+id/address3"
-                    android:textColor="@color/green" />
 
             </LinearLayout>
 
@@ -258,7 +298,8 @@
         android:layout_gravity="center"
         android:layout_weight="0.34"
         card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="@dimen/cardview_default_elevation">
+        card_view:cardElevation="@dimen/cardview_default_elevation"
+        android:background="#f2ffee">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -311,19 +352,31 @@
                         android:text="Categories"
                         android:textColor="@color/green" />
 
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@id/categories4"
+                        android:gravity="left"
+                        android:text="Address"
+                        android:id="@+id/address4"
+                        android:textColor="@color/green" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/address4"
+                        android:text="Take me here!"
+                        android:id="@+id/num4"
+                        android:background="@drawable/button"
+                        android:layout_centerInParent="true"/>
+
                 </RelativeLayout>
 
 
 
-                <TextView
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="left"
-                    android:text="Address"
-                    android:id="@+id/address4"
-                    android:textColor="@color/green" />
 
 
             </LinearLayout>
