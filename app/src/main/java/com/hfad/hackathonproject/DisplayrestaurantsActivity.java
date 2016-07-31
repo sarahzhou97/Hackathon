@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,10 +17,16 @@ import com.hfad.hackathonproject.AzureConnector;
 import com.hfad.hackathonproject.R;
 import com.hfad.hackathonproject.Restaurant;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class DisplayrestaurantsActivity extends AppCompatActivity {
 
+    private TextView name1,name2,name3,name4,address1,address2,address3,address4,price1,price2,price3,price4;
+    private ImageView icon1,icon2,icon3,icon4;
+    AzureConnector connector= new AzureConnector();
+    ArrayList<Restaurant> restaurants= connector.getRestaurants("RESTAURANTS");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +65,7 @@ public class DisplayrestaurantsActivity extends AppCompatActivity {
         ImageView icon4 = (ImageView)findViewById(R.id.icon4);
 
 
-        AzureConnector connector = new AzureConnector();
-        ArrayList<Restaurant> restaurants = connector.getRestaurants("RESTAURANTS");
+
 
         name1.setText(restaurants.get(0).getName());
         name2.setText(restaurants.get(1).getName());
@@ -100,7 +106,35 @@ public class DisplayrestaurantsActivity extends AppCompatActivity {
         }
     }
 
+    public void onClickNum1(View view) {
+        connector = new AzureConnector();
+        restaurants = connector.getRestaurants("RESTAURANTS");
+        Intent intent1 = new Intent(this,RestaurantDescription.class);
+        intent1.putExtra("name",restaurants.get(0).getName());
+        startActivity(intent1);
+    }
 
+    public void onClickNum2(View view) {
+        connector = new AzureConnector();
+        restaurants = connector.getRestaurants("RESTAURANTS");
+        Intent intent2 = new Intent(this,RestaurantDescription.class);
+        intent2.putExtra("name",restaurants.get(1).getName());
+        startActivity(intent2);
+    }
 
+    public void onClickNum3(View view) {
+        connector = new AzureConnector();
+        restaurants = connector.getRestaurants("RESTAURANTS");
+        Intent intent3 = new Intent(this,RestaurantDescription.class);
+        intent3.putExtra("name",restaurants.get(2).getName());
+        startActivity(intent3);
+    }
 
+    public void onClickNum4(View view) {
+        connector = new AzureConnector();
+        restaurants = connector.getRestaurants("RESTAURANTS");
+        Intent intent4 = new Intent(this,RestaurantDescription.class);
+        intent4.putExtra("name",restaurants.get(3).getName());
+        startActivity(intent4);
+    }
 }
