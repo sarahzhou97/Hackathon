@@ -20,7 +20,7 @@
             android:layout_weight="0.34"
             card_view:cardCornerRadius="4dp"
             card_view:cardElevation="@dimen/cardview_default_elevation"
-            android:background="f2ffee">
+            android:background="#f2ffee">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="127dp"
                     android:orientation="vertical"
-                    android:background="f2ffee">
+                    android:background="#f2ffee">
 
                     <TextView
                         android:id="@+id/name1"
