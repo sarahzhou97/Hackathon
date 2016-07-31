@@ -13,12 +13,14 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.home);
     }
 
-    public void loginButton() {
+    public void loginButton(View view) {
         Intent intent = new Intent(Main.this, Login.class);
+        startActivity(intent);
     }
 
-    public void signUpButton() {
+    public void signUpButton(View view) {
         Intent intent2 = new Intent(Main.this,Signup.class);
+        startActivity(intent2);
     }
 
 }

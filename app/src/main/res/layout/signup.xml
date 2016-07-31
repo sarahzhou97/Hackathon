@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Sign Up"
+
         android:id="@+id/textView"
         android:layout_marginTop="95dp"
         android:layout_alignParentTop="true"
@@ -38,7 +39,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="Sign Up"
+        android:onClick="onSignUp"
         android:id="@+id/button"
         android:layout_alignTop="@+id/editText"
         android:layout_centerHorizontal="true"
