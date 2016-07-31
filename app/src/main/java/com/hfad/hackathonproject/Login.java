@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class Login extends AppCompatActivity {
     String usernameString;
@@ -30,7 +29,8 @@ public class Login extends AppCompatActivity {
         boolean confirm = connector.confirmUser("LOGIN",usernameString,passwordString);
 
         if (confirm) {
-            Intent intent2 = new Intent(this,MakePalette.class);
+            Intent intent2 = new Intent(this,MakePalate.class);
+            startActivity(intent2);
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Sorry but your username does not match your password.").setTitle("Try Again").setCancelable(false);

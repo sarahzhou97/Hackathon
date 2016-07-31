@@ -3,13 +3,14 @@ package com.hfad.hackathonproject;
 /**
  * Created by sarahzhou on 7/26/16.
  */
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import java.util.ArrayList;
 
-public class MakePalette extends AppCompatActivity {
+public class MakePalate extends AppCompatActivity {
 
     private ArrayList<String> Restaurant = new ArrayList<String>();
     private ArrayList<Integer> Rating  = new ArrayList<Integer>();
@@ -17,7 +18,8 @@ public class MakePalette extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.makepalette);
+        setContentView(R.layout.makepalate);
+        Intent intent = getIntent();
     }
 
     public void onCheckboxClicked(View view) {
@@ -221,5 +223,12 @@ public class MakePalette extends AppCompatActivity {
                 }
                 break;
         }
+    }
+
+    public void onButtonPress(View view) {
+        Intent intent2 = new Intent(this,DisplayrestaurantsActivity.class);
+        startActivity(intent2);
+        AzureConnector connector = new AzureConnector();
+        connector.getFourRestaurants("RESTAURANTS",Restaurant,Rating);
     }
 }

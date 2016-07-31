@@ -1,6 +1,7 @@
 package com.hfad.hackathonproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,8 @@ public class DisplayrestaurantsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.displayrestaurantstorate);
+
+        Intent intent = getIntent();
 
         CardView cv1 = (CardView)findViewById(R.id.cv1);
         CardView cv2 = (CardView)findViewById(R.id.cv2);
