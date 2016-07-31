@@ -20,14 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity
-            android:name=".EnterRadius"
-            android:label="@string/title_activity_enter_radius"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".DisplayrestaurantsActivity"></activity>
+        <activity android:name=".RestaurantDescription"></activity>
     </application>
 
 </manifest>
