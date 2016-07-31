@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2ffee">
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
@@ -6,7 +11,8 @@
     android:layout_height="wrap_content"
     android:fillViewport="true"
     android:paddingLeft="33dp"
-    android:paddingTop="64dp">
+    android:paddingTop="20dp"
+    android:background="f2ffee">
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,7 +20,8 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="f2ffee">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,7 +29,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:text="Choose your Palette!"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#484848" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -391,10 +399,14 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:text="Make My Palette!"
+            android:onClick="onButtonPress"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:background="@drawable/button" />
+            android:background="@drawable/button"
+            android:textColor="#484848"
+            android:width="300dp" />
 
 
     </LinearLayout>
 </ScrollView>
+</RelativeLayout>

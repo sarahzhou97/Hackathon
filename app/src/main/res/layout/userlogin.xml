@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+    android:background="#f2ffee">
 
     <EditText
         android:layout_width="wrap_content"
@@ -26,10 +27,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="Submit"
         android:id="@+id/button5"
+        android:textColor="#484848"
+        android:background="#4fc667"
+        android:width="300dp"
         android:layout_below="@+id/editText3"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,7 +43,8 @@
         android:text="Log In"
         android:textSize = "50sp"
         android:id="@+id/textView3"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="90dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#484848" />
 </RelativeLayout>
