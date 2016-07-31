@@ -21,6 +21,34 @@ public class AzureConnector {
 	private final String connectionUrl = "jdbc:sqlserver://allenlu.database.windows.net:1433;"
 			+ "database=Allen;user=t-allu@allenlu;password=IndianapolisColts12!;"
 			+ "encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+	
+	private void swap(ArrayList<Double> arr, ArrayList<Restaurant> rs, int lo, int hi) {
+		Collections.swap(arr, lo, hi);
+		Collections.swap(rs, lo, hi);
+		return;
+	}
+	private int partition(ArrayList<Double> arr, ArrayList<Restaurant> rs, int lo, int hi) {
+		int left = lo + 1;
+		int right = hi;
+		swap(arr,rs, lo,lo + (hi - lo)/2);
+		while(left < right) {
+			if(Double.compare(arr.get(left), arr.get(lo)) <= 0) {
+				left++;
+			}
+			else {
+				swap(arr,rs,left,right - 1);
+				right--;
+			}
+		}
+		swap(arr,rs,lo,right - 1);
+		return right - 1;
+	}
+	public void quickSort(ArrayList<Double> arr, ArrayList<Restaurant> rs, int lo, int hi) {
+		if(lo >= hi - 1) return;
+		int pvtindex = partition(arr, rs, lo, hi);
+		quickSort(arr, rs, lo, pvtindex);
+		quickSort(arr, rs, pvtindex + 1, hi);
+	}
 	public boolean tableExists(String table_name){
 		Connection con = null;
 		try {
@@ -438,15 +466,18 @@ public class AzureConnector {
 				String sql = "INSERT INTO " + table_name + "(id, name, address, number, categories, price, times, url, icon, mapaddress) " +
 							"VALUES(";
 				for(int i = 0;i < arr.size();i++){
-					Restaurant r = new Restaurant();
+					Restaurant r = arr.get(i);
 					String name = r.getName().replace("'", "");
-					String address = r.getAddress().replace("'", "");
+					String address = r.getAddress().replace("'", "").replace("\"", "");
 					String number = r.getNumber().replace("'", "");
-					String categories = r.getCategories().replace("'", "");
+					String categories = r.getCategories().replace("'", "").replace("\"", "");
 					int price = r.getPrice();
-					String times = r.getTimes().replace("'", "");
-					String url = r.getUrl().replace("'", "");
+					String times = r.getTimes().replace("'", "").replace("\"", "");
+					String url = r.getUrl().replace("'", "").replace("\"", "");
 					String icon = r.getIcon().replace("'", "");
+					if(icon.equals("food")) icon = "foodpic";
+					else if(icon.equals("dessert")) icon = "icecream";
+					else if(icon.equals("drink")) icon = "hotdrink";
 					String mapAddress = r.getMapAddress().replace("'", "");
 					String values = Integer.toString(i) + ", " + "'" + name + "'" + 
 									", " + "'" + address + "'" + 
@@ -479,17 +510,200 @@ public class AzureConnector {
 			      }
 			}
 	}
-	public int getRestaurantNumber(String table_name,String restaurant){
+	public ArrayList<Restaurant> getRestaurantsFiltered(String table_name, ArrayList<String> categories, ArrayList<Integer> prices){
 		Connection con = null;
 		Statement stmt = null;
-		int num = 0;
+		ArrayList<Restaurant> ret = null;
 		try {
 				con = DriverManager.getConnection(connectionUrl);
 				stmt = con.createStatement();
-				String sql = "SELECT id FROM " + table_name + " WHERE name='" + restaurant.replace("'", "") + "'";
+				String sql = "SELECT * FROM " + table_name;
+				if(categories.size() > 0){
+					sql += " WHERE (categories LIKE '%";
+					for(int i = 0;i < categories.size() - 1;i++){
+						sql += categories.get(i) + "%" + "' OR categories LIKE '%";
+					}
+					sql += categories.get(categories.size() - 1) + "%')";
+					if(prices.size() > 0){
+						sql += " AND (price=";
+						for(int i = 0;i < prices.size() - 1;i++){
+							sql += Integer.toString(prices.get(i)) + " OR price=";
+						}
+						sql += Integer.toString(prices.get(prices.size() - 1)) + ")";
+					}
+				}
+				else if(prices.size() > 0){
+					sql += " WHERE (price=";
+					for(int i = 0;i < prices.size() - 1;i++){
+						sql += Integer.toString(prices.get(i)) + " OR price=";
+					}
+					sql += Integer.toString(prices.get(prices.size() - 1)) + ")";
+				}
 				ResultSet rs = stmt.executeQuery(sql);
+				ret = new ArrayList<Restaurant>();
 				while(rs.next()){
-					num = rs.getInt("id");
+					Restaurant temp = new Restaurant();
+					temp.setName(rs.getString(2));
+					temp.setAddress(rs.getString(3));
+					temp.setNumber(rs.getString(4));
+					temp.setCategories(rs.getString(5));
+					temp.setPrice(rs.getInt(6));
+					temp.setTimes(rs.getString(7));
+					temp.setUrl(rs.getString(8));
+					temp.setIcon(rs.getString(9));
+					temp.setMapAddress(rs.getString(10));
+					ret.add(temp);
+				}
+				System.out.println("Selected restaurants in given database...");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+			      //finally block used to close resources
+			      try{
+			         if(stmt!=null)
+			            con.close();
+			      }catch(SQLException se){
+			      }// do nothing
+			      try{
+			         if(con!=null)
+			            con.close();
+			      }catch(SQLException se){
+			         se.printStackTrace();
+			      }
+			}
+		return ret;
+	}
+	public ArrayList<Restaurant> getFourRestaurants(String table_name,ArrayList<String> categories,ArrayList<Integer> prices){
+		ArrayList<Restaurant> ret = getRestaurantsFiltered(table_name, categories, prices);
+		ArrayList<Double> means = getMeans("MEANS");
+		if(ret.size() > 0){
+			ArrayList<String> restaurant_names = new ArrayList<String>();
+			for(Restaurant r : ret){
+				restaurant_names.add(r.getName());
+			}
+			HashMap<Restaurant,Integer> hm = getRestaurantNumbers(table_name, restaurant_names);
+			ArrayList<Integer> intarr = new ArrayList<Integer>(hm.values());
+			ArrayList<Restaurant> restarr = new ArrayList<Restaurant>(hm.keySet());
+			ArrayList<Double> dubarr = new ArrayList<Double>();
+			for(int i = 0;i < intarr.size();i++){
+				dubarr.add(means.get(intarr.get(i)));
+			}
+			quickSort(dubarr, restarr, 0, dubarr.size());
+			ArrayList<Restaurant> topFour = new ArrayList<Restaurant>();
+			if(restarr.size() > 3){
+				for(int i = restarr.size() - 1;i >= restarr.size() - 4;i--){
+					topFour.add(restarr.get(i));
+				}
+			}
+			else{
+				for(int i = restarr.size() - 1;i >= 0;i--){
+					topFour.add(restarr.get(i));
+				}
+				ArrayList<Integer> indices = new ArrayList<Integer>();
+				ArrayList<Double> doubles = new ArrayList<Double>();
+				for(int i = 0;i < means.size();i++){
+					if(indices.size() == 4 - restarr.size()){
+						for(int j = 0;j < 4 - restarr.size();j++){
+							if(Double.compare(means.get(i), doubles.get(j)) > 0){
+								indices.add(j,i);
+								doubles.add(j,means.get(i));
+								indices.remove(4 - restarr.size());
+								doubles.remove(4 - restarr.size());
+								break;
+							}
+						}
+					}
+					else if(indices.size() > 0){
+						boolean not_added = true;
+						for(int j = 0;j < indices.size();j++){
+							if(Double.compare(means.get(i), doubles.get(j)) > 0){
+								indices.add(j,i);
+								doubles.add(j,means.get(i));
+								not_added = false;
+							}
+						}
+						if(not_added) {
+							indices.add(i);
+							doubles.add(means.get(i));
+						}
+					}
+					else{
+						indices.add(i);
+						doubles.add(means.get(i));
+					}
+				}
+				ArrayList<Restaurant> remains = getRestaurantsByNumbers(table_name,indices);
+				for(Restaurant r : remains){
+					topFour.add(r);
+				}
+			}
+			return topFour;
+		}
+		else{
+			ArrayList<Integer> indices = new ArrayList<Integer>();
+			ArrayList<Double> doubles = new ArrayList<Double>();
+			for(int i = 0;i < means.size();i++){
+				if(indices.size() == 4){
+					for(int j = 0;j < 4;j++){
+						if(Double.compare(means.get(i), doubles.get(j)) > 0){
+							indices.add(j,i);
+							doubles.add(j,means.get(i));
+							indices.remove(4);
+							doubles.remove(4);
+							break;
+						}
+					}
+				}
+				else if(indices.size() > 0){
+					boolean not_added = true;
+					for(int j = 0;j < indices.size();j++){
+						if(Double.compare(means.get(i), doubles.get(j)) > 0){
+							indices.add(j,i);
+							doubles.add(j,means.get(i));
+							not_added = false;
+						}
+					}
+					if(not_added) {
+						indices.add(i);
+						doubles.add(means.get(i));
+					}
+				}
+				else{
+					indices.add(i);
+					doubles.add(means.get(i));
+				}
+			}
+			ArrayList<Restaurant> topFour = getRestaurantsByNumbers(table_name,indices);
+			return topFour;
+		}
+	}
+	public ArrayList<Restaurant> getRestaurantsByNumbers(String table_name,ArrayList<Integer> indices){
+		Connection con = null;
+		Statement stmt = null;
+		ArrayList<Restaurant> arr = null;
+		try {
+				con = DriverManager.getConnection(connectionUrl);
+				stmt = con.createStatement();
+				String sql = "SELECT * FROM " + table_name + " WHERE (id='";
+				for(int i = 0;i < indices.size() - 1;i++){
+					sql += indices.get(i) + "' OR id='";
+				}
+				sql += indices.get(indices.size() - 1) + "')";
+				ResultSet rs = stmt.executeQuery(sql);
+				arr = new ArrayList<Restaurant>();
+				while(rs.next()){
+					Restaurant temp = new Restaurant();
+					temp.setName(rs.getString(2));
+					temp.setAddress(rs.getString(3));
+					temp.setNumber(rs.getString(4));
+					temp.setCategories(rs.getString(5));
+					temp.setPrice(rs.getInt(6));
+					temp.setTimes(rs.getString(7));
+					temp.setUrl(rs.getString(8));
+					temp.setIcon(rs.getString(9));
+					temp.setMapAddress(rs.getString(10));
+					arr.add(temp);
 				}
 				System.out.println("Selected user in given database...");
 			} catch (SQLException e) {
@@ -509,7 +723,54 @@ public class AzureConnector {
 			         se.printStackTrace();
 			      }
 			}
-		return num;
+		return arr;
+	}
+	public HashMap<Restaurant,Integer> getRestaurantNumbers(String table_name,ArrayList<String> restaurants){
+		Connection con = null;
+		Statement stmt = null;
+		HashMap<Restaurant,Integer> hm = null;
+		try {
+				con = DriverManager.getConnection(connectionUrl);
+				stmt = con.createStatement();
+				String sql = "SELECT * FROM " + table_name + " WHERE (name='";
+				for(int i = 0;i < restaurants.size() - 1;i++){
+					sql += restaurants.get(i) + "' OR name='";
+				}
+				sql += restaurants.get(restaurants.size() - 1) + "')";
+				ResultSet rs = stmt.executeQuery(sql);
+				hm = new HashMap<Restaurant,Integer>();
+				while(rs.next()){
+					Restaurant temp = new Restaurant();
+					temp.setName(rs.getString(2));
+					temp.setAddress(rs.getString(3));
+					temp.setNumber(rs.getString(4));
+					temp.setCategories(rs.getString(5));
+					temp.setPrice(rs.getInt(6));
+					temp.setTimes(rs.getString(7));
+					temp.setUrl(rs.getString(8));
+					temp.setIcon(rs.getString(9));
+					temp.setMapAddress(rs.getString(10));
+					hm.put(temp, rs.getInt(1));
+				}
+				System.out.println("Selected user in given database...");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+			      //finally block used to close resources
+			      try{
+			         if(stmt!=null)
+			            con.close();
+			      }catch(SQLException se){
+			      }// do nothing
+			      try{
+			         if(con!=null)
+			            con.close();
+			      }catch(SQLException se){
+			         se.printStackTrace();
+			      }
+			}
+		return hm;
 	}
 	public void dropTable(String table_name){
 		Connection con = null;

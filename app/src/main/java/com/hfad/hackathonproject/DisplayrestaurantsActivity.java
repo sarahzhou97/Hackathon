@@ -23,7 +23,7 @@ public class DisplayrestaurantsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.displayrestaurantstorate);
-        
+
         CardView cv1 = (CardView)findViewById(R.id.cv1);
         CardView cv2 = (CardView)findViewById(R.id.cv2);
         CardView cv3 = (CardView)findViewById(R.id.cv3);
