@@ -1,5 +1,8 @@
 package com.hfad.hackathonproject;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -20,6 +23,7 @@ public class DisplayrestaurantsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.displayrestaurantstorate);
+        
         CardView cv1 = (CardView)findViewById(R.id.cv1);
         CardView cv2 = (CardView)findViewById(R.id.cv2);
         CardView cv3 = (CardView)findViewById(R.id.cv3);
@@ -46,6 +50,10 @@ public class DisplayrestaurantsActivity extends AppCompatActivity {
         TextView categories4 = (TextView)findViewById(R.id.categories4);
 
         ImageView icon1 = (ImageView)findViewById(R.id.icon1);
+        ImageView icon2 = (ImageView)findViewById(R.id.icon2);
+        ImageView icon3 = (ImageView)findViewById(R.id.icon3);
+        ImageView icon4 = (ImageView)findViewById(R.id.icon4);
+
 
         AzureConnector connector = new AzureConnector();
         ArrayList<Restaurant> restaurants = connector.getRestaurants("RESTAURANTS");
@@ -65,14 +73,28 @@ public class DisplayrestaurantsActivity extends AppCompatActivity {
         price3.setText(new String(new char[restaurants.get(2).getPrice()]).replace("\0","$"));
         price4.setText(new String(new char[restaurants.get(3).getPrice()]).replace("\0","$"));
 
-        for 
         categories1.setText(restaurants.get(0).getCategories());
         categories2.setText(restaurants.get(1).getCategories());
         categories3.setText(restaurants.get(2).getCategories());
         categories4.setText(restaurants.get(3).getCategories());
 
 
+        icon1.setImageDrawable(setDrawable(restaurants.get(0).getIcon()));
+        icon2.setImageDrawable(setDrawable(restaurants.get(1).getIcon()));
+        icon3.setImageDrawable(setDrawable(restaurants.get(2).getIcon()));
+        icon4.setImageDrawable(setDrawable(restaurants.get(3).getIcon()));
 
+
+    }
+
+    private Drawable setDrawable(String string) {
+        if (string.equals("icecream")) {
+            return this.getResources().getDrawable(R.drawable.icecream);
+        } if (string.equals("hotdrink")) {
+            return this.getResources().getDrawable(R.drawable.hotdrink);
+        } else {
+            return this.getResources().getDrawable(R.drawable.foodpic);
+        }
     }
 
 
