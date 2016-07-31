@@ -1,4 +1,3 @@
-package com.hfad.hackathonproject;
 import java.sql.*;
 import org.jblas.DoubleMatrix;
 
@@ -20,6 +19,20 @@ public class AzureConnector {
 	private final String connectionUrl = "jdbc:sqlserver://allenlu.database.windows.net:1433;"
 			+ "database=Allen;user=t-allu@allenlu;password=IndianapolisColts12!;"
 			+ "encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+	public boolean tableExists(String table_name){
+		Connection con = null;
+		try {
+			con = DriverManager.getConnection(connectionUrl);
+			DatabaseMetaData meta = con.getMetaData();
+			  ResultSet res = meta.getTables(null, null, table_name, 
+			     new String[] {"TABLE"});
+			  while(res.next()) return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public void createTable(String[] cols, String table_name){
 		Connection con = null;
 		Statement stmt = null;
@@ -86,6 +99,33 @@ public class AzureConnector {
 				con = DriverManager.getConnection(connectionUrl);
 				stmt = con.createStatement();
 				String sql = "INSERT INTO " + table_name + " VALUES(" + Integer.toString(num) + ")";
+				stmt.executeUpdate(sql);
+				System.out.println("Inserted number in given database...");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+			      //finally block used to close resources
+			      try{
+			         if(stmt!=null)
+			            con.close();
+			      }catch(SQLException se){
+			      }// do nothing
+			      try{
+			         if(con!=null)
+			            con.close();
+			      }catch(SQLException se){
+			         se.printStackTrace();
+			      }
+			}
+	}
+	public void updateNumUsers(String table_name, int new_num){
+		Connection con = null;
+		Statement stmt = null;
+		try {
+				con = DriverManager.getConnection(connectionUrl);
+				stmt = con.createStatement();
+				String sql = "UPDATE " + table_name + " SET num=" + Integer.toString(new_num);
 				stmt.executeUpdate(sql);
 				System.out.println("Inserted number in given database...");
 			} catch (SQLException e) {
@@ -252,6 +292,223 @@ public class AzureConnector {
 			      }
 			}
 	}
+	public void createLoginTable(String table_name){
+		Connection con = null;
+		Statement stmt = null;
+		try{
+			con = DriverManager.getConnection(connectionUrl);
+			stmt = con.createStatement();
+			String sql = "CREATE TABLE " + table_name + " (username VARCHAR(255), " +
+							"password VARCHAR(255))";
+			stmt.executeUpdate(sql);
+			System.out.println("Created table in given database...");
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+		      //finally block used to close resources
+		      try{
+		         if(stmt!=null)
+		            con.close();
+		      }catch(SQLException se){
+		      }// do nothing
+		      try{
+		         if(con!=null)
+		            con.close();
+		      }catch(SQLException se){
+		         se.printStackTrace();
+		      }
+		}
+	}
+	public boolean insertUserLogin(String table_name, String user_name, String password){
+		Connection con = null;
+		Statement stmt = null;
+		if(tableExists(table_name)){
+			try{
+				con = DriverManager.getConnection(connectionUrl);
+				String exists = "SELECT * FROM " + table_name + " WHERE username='" + user_name.replace("'", "") + "'";
+				stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(exists);
+				while(rs.next()){
+					con.close();
+					return false;
+				}
+				stmt = con.createStatement();
+				String sql = "INSERT INTO " + table_name + " (username, password) VALUES(" + "'" + user_name.replace("'", "") +
+								"'" + ", '" + password.replace("'", "") + "')";
+				stmt.executeUpdate(sql);
+				System.out.println("Inserted user login in given database...");
+			}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}finally{
+		      //finally block used to close resources
+		      try{
+		         if(stmt!=null)
+		            con.close();
+		      }catch(SQLException se){
+		      }// do nothing
+		      try{
+		         if(con!=null)
+		            con.close();
+		      }catch(SQLException se){
+		         se.printStackTrace();
+		      }
+			}
+			return true;
+		}
+		return false;
+	}
+	public boolean confirmUser(String table_name, String username, String password){
+		Connection con = null;
+		Statement stmt = null;
+		if(tableExists(table_name)){
+			boolean check = false;
+			try{
+				con = DriverManager.getConnection(connectionUrl);
+				String exists = "SELECT password FROM " + table_name + " WHERE username='" + username.replace("'", "") + "'";
+				stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(exists);
+				while(rs.next()){
+					check = true;
+					String confirm = rs.getString("password");
+					if(!confirm.equals(password.replace("'", ""))){
+						con.close();
+						return false;
+					}
+				}
+			}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}finally{
+		      //finally block used to close resources
+		      try{
+		         if(stmt!=null)
+		            con.close();
+		      }catch(SQLException se){
+		      }// do nothing
+		      try{
+		         if(con!=null)
+		            con.close();
+		      }catch(SQLException se){
+		         se.printStackTrace();
+		      }
+			}
+			return check;
+		}
+		return false;
+	}
+	public void createRestaurantTable(String table_name){
+		Connection con = null;
+		Statement stmt = null;
+		try{
+			con = DriverManager.getConnection(connectionUrl);
+			stmt = con.createStatement();
+			String sql = "CREATE TABLE " + table_name + " (id INTEGER not NULL, name VARCHAR(255), " +
+							"address VARCHAR(255), number VARCHAR(255), categories VARCHAR(255), price INTEGER, " + 
+							"times VARCHAR(255), url VARCHAR(255), icon VARCHAR(255), mapaddress VARCHAR(255))";
+			stmt.executeUpdate(sql);
+			System.out.println("Created table in given database...");
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+		      //finally block used to close resources
+		      try{
+		         if(stmt!=null)
+		            con.close();
+		      }catch(SQLException se){
+		      }// do nothing
+		      try{
+		         if(con!=null)
+		            con.close();
+		      }catch(SQLException se){
+		         se.printStackTrace();
+		      }
+		}
+	}
+	public void insertRestaurants(String table_name,ArrayList<Restaurant> arr){
+		Connection con = null;
+		Statement stmt = null;
+		try {
+				con = DriverManager.getConnection(connectionUrl);
+				stmt = con.createStatement();
+				String sql = "INSERT INTO " + table_name + "(id, name, address, number, categories, price, times, url, icon, mapaddress) " +
+							"VALUES(";
+				for(int i = 0;i < arr.size();i++){
+					Restaurant r = new Restaurant();
+					String name = r.getName().replace("'", "");
+					String address = r.getAddress().replace("'", "");
+					String number = r.getNumber().replace("'", "");
+					String categories = r.getCategories().replace("'", "");
+					int price = r.getPrice();
+					String times = r.getTimes().replace("'", "");
+					String url = r.getUrl().replace("'", "");
+					String icon = r.getIcon().replace("'", "");
+					String mapAddress = r.getMapAddress().replace("'", "");
+					String values = Integer.toString(i) + ", " + "'" + name + "'" + 
+									", " + "'" + address + "'" + 
+									", " + "'" + number + "'" + 
+									", " + "'" + categories + "'" +
+									", " + Integer.toString(price) +
+									", " + "'" + times + "'" +
+									", " + "'" + url + "'" +
+									", " + "'" + icon + "'" + 
+									", " + "'" + mapAddress + "'" + 
+									")";
+					stmt.executeUpdate(sql + values);
+				}
+				System.out.println("Inserted restaurants in given database...");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+			      //finally block used to close resources
+			      try{
+			         if(stmt!=null)
+			            con.close();
+			      }catch(SQLException se){
+			      }// do nothing
+			      try{
+			         if(con!=null)
+			            con.close();
+			      }catch(SQLException se){
+			         se.printStackTrace();
+			      }
+			}
+	}
+	public int getRestaurantNumber(String table_name,String restaurant){
+		Connection con = null;
+		Statement stmt = null;
+		int num = 0;
+		try {
+				con = DriverManager.getConnection(connectionUrl);
+				stmt = con.createStatement();
+				String sql = "SELECT id FROM " + table_name + " WHERE name='" + restaurant.replace("'", "") + "'";
+				ResultSet rs = stmt.executeQuery(sql);
+				while(rs.next()){
+					num = rs.getInt("id");
+				}
+				System.out.println("Selected user in given database...");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+			      //finally block used to close resources
+			      try{
+			         if(stmt!=null)
+			            con.close();
+			      }catch(SQLException se){
+			      }// do nothing
+			      try{
+			         if(con!=null)
+			            con.close();
+			      }catch(SQLException se){
+			         se.printStackTrace();
+			      }
+			}
+		return num;
+	}
 	public void dropTable(String table_name){
 		Connection con = null;
 		Statement stmt = null;
@@ -351,7 +608,7 @@ public class AzureConnector {
 		try {
 				con = DriverManager.getConnection(connectionUrl);
 				stmt = con.createStatement();
-				String sql = "SELECT id FROM " + table_name + " WHERE client=" + "'" + user_name + "'";
+				String sql = "SELECT id FROM " + table_name + " WHERE client=" + "'" + user_name.replace("'", "") + "'";
 				ResultSet rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					id = rs.getInt("id");
@@ -383,7 +640,7 @@ public class AzureConnector {
 				con = DriverManager.getConnection(connectionUrl);
 				stmt = con.createStatement();
 				String sql = "UPDATE " + table_name + " SET ";
-				String where = " WHERE client=" + "'" + user_name +"'";
+				String where = " WHERE client=" + "'" + user_name.replace("'","") +"'";
 				for(Integer i : vals.keySet()){
 					sql += "col" + Integer.toString(i) + "=" + Double.toString(vals.get(i)) + ", ";
 				}
@@ -443,6 +700,48 @@ public class AzureConnector {
 			      }
 			}
 		return ret;
+	}
+	public ArrayList<Restaurant> getRestaurants(String table_name){
+		Connection con = null;
+		Statement stmt = null;
+		ArrayList<Restaurant> arr = new ArrayList<Restaurant>();
+		try {
+				con = DriverManager.getConnection(connectionUrl);
+				stmt = con.createStatement();
+				String sql = "SELECT * FROM " + table_name;
+				ResultSet rs = stmt.executeQuery(sql);
+				while(rs.next()){
+					Restaurant r = new Restaurant();
+					r.setName(rs.getString(2));
+					r.setAddress(rs.getString(3));
+					r.setNumber(rs.getString(4));
+					r.setCategories(rs.getString(5));
+					r.setPrice(rs.getInt(6));
+					r.setTimes(rs.getString(7));
+					r.setUrl(rs.getString(8));
+					r.setIcon(rs.getString(9));
+					r.setMapAddress(rs.getString(10));
+					arr.add(r);
+				}
+				System.out.println("Selected user in given database...");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+			      //finally block used to close resources
+			      try{
+			         if(stmt!=null)
+			            con.close();
+			      }catch(SQLException se){
+			      }// do nothing
+			      try{
+			         if(con!=null)
+			            con.close();
+			      }catch(SQLException se){
+			         se.printStackTrace();
+			      }
+			}
+		return arr;
 	}
 	public ArrayList<Double> getUser(String table_name, String user_name){
 		Connection con = null;

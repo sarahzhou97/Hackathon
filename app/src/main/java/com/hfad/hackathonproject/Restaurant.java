@@ -1,76 +1,67 @@
-package com.hfad.hackathonproject;
-
-/**
- * Created by sarahzhou on 7/26/16.
- */
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class Restaurant {
-
-    private String name;
-    private String address;
-    private String city;
-    private String state;
-    private String zipcode;
-    private String phonenum;
-    private String[] categories;
-    private String price;
-    private double rating;
-    private String hours;
-    private String website;
-
-    public ArrayList<Restaurant> restaurants = generateRestaurants();
-
-   public ArrayList<Restaurant> generateRestaurants() {
-       ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
-
-        String csvFile="/Users/sarahzhou/AndroidStudioProjects/HackathonProject/Restaurants.csv";
-        BufferedReader br = null;
-        String line="";
-
-        try {
-            br = new BufferedReader(new FileReader(csvFile));
-            while ((line=br.readLine())!=null) {
-                String[] data = line.split(",");
-                String[] categoriesArray = data[6].split(",");
-                double ratingDouble = Double.parseDouble(data[8]);
-                restaurants.add(new Restaurant(data[0],data[1],data[2],data[3],data[4],data[5],categoriesArray,data[7],ratingDouble,data[9],data[10]));
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-return restaurants;
-}
-
-    public Restaurant(String name,String address,String city, String state, String zipcode, String phonenum,String[] categories,String price,double rating,String hours, String website) {
-        this.name = name;
-        this.address=address;
-        this.city=city;
-        this.state=state;
-        this.zipcode=zipcode;
-        this.phonenum=phonenum;
-        this.categories=categories;
-        this.price=price;
-        this.rating=rating;
-        this.hours = hours;
-        this.website=website;
-    }
-
-    //write getters
+	private String name;
+	private String address;
+	private String number;
+	private String categories;
+	private int price;
+	private String times;
+	private String url;
+	private String icon;
+	private String mapAddress;
+	public String getMapAddress(){
+		return mapAddress;
+	}
+	public void setMapAddress(String mapAddress){
+		this.mapAddress = mapAddress;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	public String getCategories() {
+		return categories;
+	}
+	public void setCategories(String categories) {
+		this.categories = categories;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getTimes() {
+		return times;
+	}
+	public void setTimes(String times) {
+		this.times = times;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+	
 }
