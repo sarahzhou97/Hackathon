@@ -94,7 +94,7 @@ public class MakePalette extends AppCompatActivity {
                 }
                 break;
 
-            case R.id.checkbox_latin:
+            case R.id.checkbox_latinamerican:
                 if (checked) {
                     Restaurant.add("Latin");
                     Restaurant.add("South American");
@@ -153,7 +153,7 @@ public class MakePalette extends AppCompatActivity {
                 }
                 break;
 
-            case R.id.checkbox_thai:
+            case R.id.checkbox_Thai:
                 if (checked) {
                     Restaurant.add("Thai");
                 }

@@ -49,8 +49,9 @@
             android:autoLink="web"
             android:cursorVisible="true"
             android:background="@drawable/button"
+            android:layout_marginLeft="80dp"
             android:onClick="gotowebsite"
-            android:layout_gravity="center_horizontal" />
+            />
 
         <Button
             android:layout_width="wrap_content"
@@ -60,9 +61,10 @@
             android:cursorVisible="true"
             android:text="New Button"
             android:id="@+id/mapsbutton"
+            android:layout_marginLeft="60dp"
             android:background="@drawable/button"
             android:onClick="gotomaps"
-            android:layout_gravity="center_horizontal" />
+            />
 
     </LinearLayout>
 
