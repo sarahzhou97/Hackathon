@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2ffee">
+    android:background="#f2ffee"
+    android:paddingTop="10dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,7 +13,9 @@
         android:id="@+id/RestaurantName"
         android:layout_gravity="center_horizontal"
         android:textStyle="bold"
-        android:textColor="@color/green"/>
+        android:textColor="@color/green"
+        android:textSize="45dp"
+        android:paddingTop="10dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -26,7 +29,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/categories"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,12 +38,14 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/website"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="30dp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingTop="55dp">
 
         <Button
             android:layout_width="wrap_content"
@@ -52,28 +58,31 @@
             android:autoLink="web"
             android:cursorVisible="true"
             android:background="@drawable/button"
-            android:layout_marginLeft="60dp"
             android:onClick="gotowebsite"
-            android:textColor="#484848" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:autoLink="web"
-            android:cursorVisible="true"
-            android:text="Directions"
-            android:id="@+id/mapsbutton"
-            android:layout_marginLeft="60dp"
-            android:background="@drawable/button"
-            android:onClick="gotomaps"
-            android:textColor="#484848" />
+            android:textColor="#484848"
+            android:width="300dp"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
     <!-- hello -->
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:autoLink="web"
+        android:cursorVisible="true"
+        android:text="Directions"
+        android:id="@+id/mapsbutton"
+        android:background="@drawable/button"
+        android:onClick="gotomaps"
+        android:textColor="#484848"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:width="300dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,7 +90,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Finished? Rate it!"
         android:id="@+id/rate"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="65dp" />
 
     <RatingBar
         android:layout_width="wrap_content"
