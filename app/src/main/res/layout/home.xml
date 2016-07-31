@@ -16,13 +16,15 @@
             android:id="@+id/loginbutton"
             android:layout_gravity="center_horizontal"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:onClick="loginButton"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:id="@+id/signupbutton"
+        android:onClick="signUpButton"
         android:layout_below="@+id/loginbutton"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
